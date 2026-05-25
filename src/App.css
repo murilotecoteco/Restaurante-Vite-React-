@@ -1,0 +1,211 @@
+/* ============================================================================
+   ARQUIVO: App.css
+   ============================================================================
+   Este arquivo contém estilos do componente .counter (provavelmente um exemplo antigo) 
+   e estilos para as classes .hero, #center, #next-steps, #docs, #spacer, .ticks.
+   Na implementação atual do App.jsx, esses estilos NÃO estão sendo usados porque o 
+   App.jsx injeta uma string CSS completa que substitui ou sobrepõe estes.
+   No entanto, mantemos comentários para fins didáticos.
+   IMPORTANTE: O site funcional depende do CSS injetado via App.jsx, mas este arquivo 
+   permanece no projeto (não removemos).
+   ============================================================================ */
+
+/* Componente .counter – um botão/contador estilizado com acento */
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);          /* Cor de acento (variável global) */
+  background: var(--accent-bg);  /* Fundo com acento semi-transparente */
+  border: 2px solid transparent; /* Borda transparente para efeito de transição suave */
+  transition: border-color 0.3s; /* Transição suave ao mudar a cor da borda */
+  margin-bottom: 24px;
+
+  /* Efeito hover: ao passar o mouse, a borda ganha a cor de acento */
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  /* Foco visível (acessibilidade): contorno externo quando navegação por teclado */
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Seção hero: posicionamento relativo para conter os elementos absolutos internos */
+.hero {
+  position: relative;
+
+  /* Elementos .base, .framework, .vite compartilham alinhamento horizontal centralizado */
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;   /* Propriedade lógica: define left e right como 0 (ou inline-start/inline-end) */
+    margin: 0 auto;    /* Centraliza horizontalmente */
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;        /* Camada inferior */
+  }
+
+  .framework,
+  .vite {
+    position: absolute; /* Permite sobreposição em relação ao .base */
+  }
+
+  .framework {
+    z-index: 1;        /* Fica acima do .base */
+    top: 34px;
+    height: 28px;
+    /* Transformações 3D para criar uma ilusão de perspectiva e rotação */
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
+  }
+}
+
+/* #center – uma área central que usa flexbox para alinhar itens vertical/horizontalmente */
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;               /* Espaçamento entre os filhos */
+  place-content: center;   /* Alinha conteúdo no eixo principal e transversal */
+  place-items: center;
+  flex-grow: 1;            /* Ocupa espaço disponível em um container flex */
+
+  /* Responsivo: telas <= 1024px reduz padding e gap */
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+/* #next-steps – área de links/documentação (exemplo de layout) */
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  /* Cada div filha direta ocupa espaço igualmente (flex: 1) */
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Em telas menores, empilha verticalmente e centraliza texto */
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* #docs – borda direita separadora (exceto no mobile) */
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* Listas dentro de #next-steps – estilização para links de redes sociais ou documentação */
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-h);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  /* Responsivo: quebra de linha, ajuste de largura */
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* Espaçador com borda superior */
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+/* .ticks – cria marcadores laterais usando pseudo-elementos before/after */
+.ticks {
+  position: relative;
+  width: 100%;
+
+  /* Pseudo-elementos comuns */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent; /* Base para triângulos */
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border); /* Triângulo apontando para esquerda */
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border); /* Triângulo apontando para direita */
+  }
+}
