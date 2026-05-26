@@ -1,7 +1,9 @@
 # Lumière Restaurant
 
-This project is a restaurant landing page built with React and Vite.  
+A restaurant landing page built with React and Vite.
 It demonstrates a complete front-end setup with navigation, menu sections, gallery, contact information, and WhatsApp reservation integration.
+
+🔗 **[Live Demo](https://murilotecoteco.github.io/Restaurante-Vite-React-/)**
 
 ---
 
@@ -145,9 +147,8 @@ Possible future upgrades include:
 
 ## Author
 
-Murilo  
-
-GitHub: https://github.com/murilotecoteco
+Murilo
+GitHub: <https://github.com/murilotecoteco>
 
 ---
 
